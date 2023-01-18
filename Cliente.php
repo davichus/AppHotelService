@@ -3,6 +3,7 @@ include "config.php";
 include "utils.php";
 
 $dbConn =  connect($db);
+//jj
 
 // SELECT 
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
