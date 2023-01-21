@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
      $input = $_POST;
      $sql="INSERT INTO Hotel
-           (idHotel, nombreHotel, descripcionHotel, correoHotel, direccionHotel, ubicacionHotel, telefonoHotel, estadoHotel) 
+           (idHotel, nombreHotel, descripcionHotel, correoHotel, direccionHotel, ubicacionHotel, telefonoHotel, fotoHotel,estadoHotel) 
            VALUES 
            (NULL, :nombreHotel, :descripcionHotel, :correoHotel, :direccionHotel, :ubicacionHotel, :telefonoHotel, 'A')";
 
