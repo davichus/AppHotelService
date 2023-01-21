@@ -7,11 +7,11 @@ $dbConn =  connect($db);
 // SELECT 
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
-    if (isset($_GET['idHotel']))
+    if (isset($_GET['idtipo']))
     {
       //Mostrar un post
-      $sql = $dbConn->prepare("SELECT * Hotel  where idHotel=:idHotel");
-      $sql->bindValue(':idHotel', $_GET['idHotel']);
+      $sql = $dbConn->prepare("SELECT * tipoHabitacion  where idtipo=:idtipo");
+      $sql->bindValue(':idtipo', $_GET['idtipo']);
       $sql->execute();
       header("HTTP/1.1 200 OK");
       echo json_encode(  $sql->fetch(PDO::FETCH_ASSOC)  );
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 
 	  else {
       //Mostrar lista de post
-      $sql = $dbConn->prepare("SELECT * FROM Hotel");
+      $sql = $dbConn->prepare("SELECT * FROM tipoHabitacion");
       $sql->execute();
       $sql->setFetchMode(PDO::FETCH_ASSOC);
       header("HTTP/1.1 200 OK");
@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
      $input = $_POST;
-     $sql="INSERT INTO Hotel
-           (idHotel, nombreHotel, descripcionHotel, correoHotel, direccionHotel, ubicacionHotel, telefonoHotel, fotoHotel,estadoHotel) 
+     $sql="INSERT INTO tipoHabitacion
+           (idtipo, descTipo) 
            VALUES 
-           (NULL, :nombreHotel, :descripcionHotel, :correoHotel, :direccionHotel, :ubicacionHotel, :telefonoHotel, :fotoHotel,'A')";
+           (NULL, :nombreHotel, :descTipo)";
 
      $statement = $dbConn->prepare($sql);
      bindAllValues($statement, $input);
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
      $postCodigo = $dbConn->lastInsertId();
      if($postCodigo)
      {
-       $input['idHotel'] = $postCodigo;
+       $input['idtipo'] = $postCodigo;
        header("HTTP/1.1 200 OK");
        echo json_encode($input);
        exit();
@@ -57,9 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 //Eliminar
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 {
-	$codigo = $_GET['idHotel'];
-  $statement = $dbConn->prepare("DELETE FROM  Hotel where idHotel=:idHotel");
-  $statement->bindValue(':idHotel', $codigo);
+	$codigo = $_GET['idtipo'];
+  $statement = $dbConn->prepare("DELETE FROM  tipoHabitacion where idtipo=:idtipo");
+  $statement->bindValue(':idtipo', $codigo);
   $statement->execute();
 	header("HTTP/1.1 200 OK");
 	exit();
@@ -74,9 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT')
     $fields = getParams($input);
 
     $sql = "
-          UPDATE Hotel
+          UPDATE tipoHabitacion
           SET $fields
-          WHERE idHotel='$postCodigo'
+          WHERE idtipo='$postCodigo'
            ";
 
     $statement = $dbConn->prepare($sql);
