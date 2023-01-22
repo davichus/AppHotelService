@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     if (isset($_GET['idHotel']))
     {
       //Mostrar un post
-      $sql = $dbConn->prepare("SELECT * Hotel  where idHotel=:idHotel");
+      $sql = $dbConn->prepare("SELECT * from Hotel  where idHotel=:idHotel");
       $sql->bindValue(':idHotel', $_GET['idHotel']);
       $sql->execute();
       header("HTTP/1.1 200 OK");

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     if (isset($_GET['idtipo']))
     {
       //Mostrar un post
-      $sql = $dbConn->prepare("SELECT * tipoHabitacion  where idtipo=:idtipo");
+      $sql = $dbConn->prepare("SELECT * from tipoHabitacion  where idtipo=:idtipo");
       $sql->bindValue(':idtipo', $_GET['idtipo']);
       $sql->execute();
       header("HTTP/1.1 200 OK");

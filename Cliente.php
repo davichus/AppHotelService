@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     if (isset($_GET['idHabitacion']))
     {
       //Mostrar un post
-      $sql = $dbConn->prepare("SELECT * Cliente  where idCliente =:idCliente ");
+      $sql = $dbConn->prepare("SELECT * from Cliente  where idCliente =:idCliente ");
       $sql->bindValue(':idCliente', $_GET['idCliente']);
       $sql->execute();
       header("HTTP/1.1 200 OK");
