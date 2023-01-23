@@ -48,7 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       header("HTTP/1.1 200 OK");
       echo json_encode($input);
       exit();
-	 }
+	 }else{
+    echo json_encode("ERROR");
+   }
 }
 //Eliminar
 if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
