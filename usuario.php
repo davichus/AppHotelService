@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $sql = "INSERT INTO usuario
           (idUsuario, idTipoUsuario, nombreUsuario, apellidoUsuario, correoUsuario, usuario, contraseñaUsuario, estadoUsuario)
           VALUES
-          (NULL, :idTipoUsuario, :nombreUsuario, :apellidoUsuario, :correoUsuario, :usuario, :contraseñaUsuario, :estadoUsuario)";
+          (NULL, :idTipoUsuario, :nombreUsuario, :apellidoUsuario, :correoUsuario, :usuario, :contraseñaUsuario, 'A')";
     $statement = $dbConn->prepare($sql);
     bindAllValues($statement, $input);
     $statement->execute();
