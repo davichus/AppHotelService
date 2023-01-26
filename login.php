@@ -33,5 +33,7 @@ if(mysqli_num_rows(mysqli_query($con,"SELECT * FROM usuario WHERE correoUsuario=
     }else{
         $json = array("status" => 300,'message' => "Error");
     }
+    echo $json;
 
+    mysqli_close($con)
 ?>
