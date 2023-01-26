@@ -3,13 +3,13 @@ include "config.php";
 include "utils.php";
 
 $dbConn =  connect($db);
-if(isset($_GET["usuario"]) && isset($_GET["pass"])){
-    $usuario=$_GET['usuario'];
-    $pass=$_GET['pass'];
+if(isset($_GET["correoUsuario"]) && isset($_GET["passwordUsuario"])){
+    $usuario=$_GET['correoUsuario'];
+    $pass=$_GET['passwordUsuario'];
     
     $conexion=mysqli_connect($hostname_localhost,$usuarioname_localhost,$password_localhost,$database_localhost);
     
-    $consulta="SELECT usuario, pass FROM user WHERE usuario= '{$usuario}' AND pass = '{$pass}'";
+    $consulta="SELECT correoUsuario,passwordUsuario FROM usuario WHERE correoUsuario= '{$usuario}' AND passwordUsuario = '{$pass}'";
     $resultado=mysqli_query($dbConn,$consulta);
 
     if($consulta){
