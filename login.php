@@ -3,7 +3,6 @@ include "config.php";
 include "utils.php";
 
 $dbConn =  connect($db);
-
 if(isset($_GET["usuario"]) && isset($_GET["pass"])){
     $usuario=$_GET['usuario'];
     $pass=$_GET['pass'];
@@ -40,6 +39,7 @@ else{
         $results["nombre"]='No Retorna';
         $json['usuarios'][]=$results;
         echo json_encode($json);
-    }'
+    }
+
 
 ?>
