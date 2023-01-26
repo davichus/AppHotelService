@@ -5,7 +5,7 @@ include "utils.php";
 $dbConn =  connect($db);
 
 // SELECT 
-if ($_SERVER['REQUEST_METHOD'] == 'GET')
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     if (isset($_GET['correoUsuario']) && isset($_GET["passwordUsuario"]))
     {
