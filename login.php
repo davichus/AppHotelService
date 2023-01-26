@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       header("HTTP/1.1 200 OK");
       echo json_encode(  $sql->fetch(PDO::FETCH_ASSOC)  );
       exit();
-	  }
+	  }else{
+        echo json_encode("ERROR");
+      }
 
 
 }
