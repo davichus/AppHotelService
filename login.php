@@ -4,28 +4,42 @@ include "utils.php";
 
 $dbConn =  connect($db);
 
-// SELECT 
-if ($_SERVER['REQUEST_METHOD'] == 'GET')
-{
-    if (isset($_GET["correoUsuario"]) && isset($_GET["passwordUsuario"]))
-    {
-        $usuario=$_GET['correoUsuario'];
-        $pass=$_GET['passwordUsuario'];
-      //Mostrar un post
-      $sql = $dbConn->prepare("SELECT correoUsuario, passwordUsuario from usuario  where usuario= '{$usuario}' AND pass = '{$pass}'");
-      $sql->execute();
-      header("HTTP/1.1 200 OK");
-      echo json_encode(  $sql->fetch(PDO::FETCH_ASSOC)  );
-      exit();
-	  }
-      else{
-        $sql["usuario"]='No Registra';
-        $sql["pass"]='No Registra';
+if(isset($_GET["usuario"]) && isset($_GET["pass"])){
+    $usuario=$_GET['usuario'];
+    $pass=$_GET['pass'];
+    
+    $conexion=mysqli_connect($hostname_localhost,$usuarioname_localhost,$password_localhost,$database_localhost);
+    
+    $consulta="SELECT usuario, pass FROM user WHERE usuario= '{$usuario}' AND pass = '{$pass}'";
+    $resultado=mysqli_query($dbConn,$consulta);
+
+    if($consulta){
+    
+        if($registro=mysqli_fetch_array($resultado)){
+            $json['datos'][]=$registro;
+            
+        }
+        mysqli_close($conexion);
         echo json_encode($json);
     }
 
 
-}
 
+    else{
+        $results["usuario"]='No Registra';
+        $results["pass"]='No Registra';
+        $results["nombre"]='No Registra';
+        $json['datos']['']=$results;
+        echo json_encode($json);
+    }
+    
+}
+else{
+        $results["usuario"]='No Retorna';
+        $results["pass"]='No Retorna';
+        $results["nombre"]='No Retorna';
+        $json['usuarios'][]=$results;
+        echo json_encode($json);
+    }'
 
 ?>
