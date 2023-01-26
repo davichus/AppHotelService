@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     if (isset($_POST['correoUsuario']) && isset($_POST["passwordUsuario"]))
     {
-      //Mostrar un post
       $sql = $dbConn->prepare("SELECT * from usuario  where correoUsuario=:correoUsuario and passwordUsuario=:passwordUsuario");
       $sql->bindValue(':correoUsuario', $_POST['correoUsuario']);
       $sql->bindValue(':passwordUsuario', $_POST['passwordUsuario']);
