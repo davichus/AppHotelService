@@ -11,7 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     {
       //Mostrar un post
       $sql = $dbConn->prepare("SELECT * from usuario  where correoUsuario=:correoUsuario and passwordUsuario=:passwordUsuario");
-      $sql->bindValue(':correoUsuario', $_GET['correoUsuario'] && ':passwordUsuario', $_GET['passwordUsuario']);
+      $sql->bindValue(':correoUsuario', $_GET['correoUsuario']);
+      $sql->bindValue(':passwordUsuario', $_GET['passwordUsuario']);
       $sql->execute();
       header("HTTP/1.1 200 OK");
       echo json_encode(  $sql->fetch(PDO::FETCH_ASSOC)  );
