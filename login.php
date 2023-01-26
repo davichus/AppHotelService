@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
       $sql->bindValue(':correoUsuario', $_POST['correoUsuario']);
       $sql->bindValue(':passwordUsuario', $_POST['passwordUsuario']);
       $sql->execute();
-      //header("HTTP/1.1 200 OK");
+      header("HTTP/1.1 200 OK");
       echo json_encode(  $sql->fetch(PDO::FETCH_ASSOC)  );
       exit();
 	  }
