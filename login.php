@@ -34,7 +34,7 @@ if(isset($_GET["correoUsuario"]) && isset($_GET["passwordUsuario"])){
     
 }
 else{
-        $results["usuario"]='No Retorna';
+        $results["correoUsuario"]='No Retorna';
         $results["pass"]='No Retorna';
         $results["nombre"]='No Retorna';
         $json['usuarios'][]=$results;
