@@ -21,19 +21,39 @@
 
 #}
 
-//update the above with your database credentials
-header("Content-Type:application/json");
-$con=mysqli_connect("localhost","root","","AppHotelDB");
-$email = $_POST["correoUsuario"];
-$password = $_POST["passwordUsuario"];
-if(mysqli_num_rows(mysqli_query($con,"SELECT * FROM usuario WHERE correoUsuario='$email' AND passwordUsuario='$password'"))> 0){
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
 
-    $json = array("status" => 200,'message' => "Success");
-    
-    }else{
-        $json = array("status" => 300,'message' => "Error");
-    }
-    echo $json;
+$postdata = json_decode(file_get_contents("php://input"));
+$username = $postdata->username;
+$password = $postdata->password;
 
-    mysqli_close($con)
+$db_host = "localhost"; 
+$db_user = "root"; 
+$db_pass = ""; 
+$db_name = "AppHotelDB"; 
+
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM usuario WHERE correoUsuario = '$username' AND passwordUsuario='$password'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $user = $result->fetch_assoc();
+    $token = bin2hex(random_bytes(16));
+    $userId = $user['user_id'];
+    $sql = "UPDATE users SET token='$token' WHERE user_id=$userId";
+    $result = $conn->query($sql);
+    $returnData = array('success' => true, 'message' => 'Logged in successfully', 'data' => array('userId' => $userId, 'token' => $token));
+} else {
+    $returnData = array('success' => false, 'message' => 'Invalid username/password');
+}
+
+$conn->close();
+
+echo json_encode($returnData);
 ?>
