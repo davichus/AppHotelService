@@ -17,15 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
    echo json_encode(  $sql->fetch(PDO::FETCH_ASSOC)  );
    exit();
   }
-  else {
-    //Mostrar lista de post
-    $sql = $dbConn->prepare("SELECT * FROM usuario");
-    $sql->execute();
-    $sql->setFetchMode(PDO::FETCH_ASSOC);
-    header("HTTP/1.1 200 OK");
-    echo json_encode( $sql->fetchAll()  );
-    exit();
-  }
 }
 header("HTTP/1.1 400 Bad Request");
 ?>
