@@ -23,8 +23,8 @@
 require_once('config.php');
 
 //Obtenemos los parámetros enviados
-$username = $_POST['correoUsuario'];
-$password = $_POST['passwordUsuario'];
+$username = $_POST['edisonldu19@gmail.com'];
+$password = $_POST['12345'];
 
 //Creamos la consulta
 $sql = "SELECT * FROM usuario WHERE username = '$username' AND password = '$password'";
