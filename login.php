@@ -5,9 +5,9 @@ include "utils.php";
 $dbConn =  connect($db);
 
 // SELECT 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
+if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
-   if (isset($_POST['correoUsuario']) && isset($_POST["passwordUsuario"]))
+   if (isset($_GET['correoUsuario']) && isset($_GET["passwordUsuario"]))
   {
    $sql = $dbConn->prepare("SELECT * from usuario  where correoUsuario=:correoUsuario and passwordUsuario=:passwordUsuario");
    $sql->bindValue(':correoUsuario', $_POST['correoUsuario']);
