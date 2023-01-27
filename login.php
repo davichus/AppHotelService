@@ -25,8 +25,8 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 $postdata = json_decode(file_get_contents("php://input"));
-$username = $postdata->username;
-$password = $postdata->password;
+$username = $postdata->correoUsuario;
+$password = $postdata->passwordUsuario;
 
 $db_host = "localhost"; 
 $db_user = "root"; 
