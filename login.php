@@ -2,7 +2,7 @@
 //include "config.php";
 //include "utils.php";
 
-$dbConn =  connect($db);
+//$dbConn =  connect($db);
 
 // SELECT 
 /*if ($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -30,7 +30,7 @@ $password = $_POST['passwordUsuario'];
 $sql = "SELECT * FROM usuario WHERE username = '$username' AND password = '$password'";
 
 //Ejecutamos la consulta
-$result = mysqli_query($dbConn, $sql);
+$result = mysqli_query($db, $sql);
 
 //Verificamos si la consulta devuelve algún resultado
 if(mysqli_num_rows($result) > 0 )
