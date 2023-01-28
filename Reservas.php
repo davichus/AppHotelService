@@ -34,36 +34,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-
-  $codigoReserva = $_GET['codigoReserva'];
-  $idCliente = $_GET['idCliente'];
-  $idHotel = $_GET['idHotel'];
-  $idHabitacion = $_GET['idHabitacion'];
-  $numdiasReserva = $_GET['numdiasReserva'];
-  $horaIngreso = $_GET['horaIngreso'];
-  $horaSalida = $_GET['horaSalida'];
-  $fechaIngreso = $_GET['fechaIngreso'];
-  $fechaSalida = $_GET['fechaSalida'];
-  $total = $_GET['total'];
-
+    $input = $_POST;
      $sql="INSERT INTO reserva
            (idReserva, codigoReserva, idCliente, idHotel, idHabitacion, numdiasReserva, horaIngreso, horaSalida, fechaIngreso, fechaSalida, total, estadoReserva)
            VALUES(NULL, :codigoReserva, :idCliente, :idHotel, :idHabitacion, :numdiasReserva, :horaIngreso, :horaSalida, :fechaIngreso, :fechaSalida, :total,'A')";
-
-     $statement = $dbConn->prepare($sql);
-     $statement->bindValue(':codigoReserva', $codigoReserva);
-     $statement->bindValue(':idCliente', $idCliente);
-     $statement->bindValue(':idHotel', $idHotel);
-     $statement->bindValue(':idHabitacion', $idHabitacion);
-     $statement->bindValue(':numdiasReserva', $numdiasReserva);
-     $statement->bindValue(':horaIngreso', $horaIngreso);
-     $statement->bindValue(':horaSalida', $horaSalida);
-     $statement->bindValue(':fechaIngreso', $fechaIngreso);
-     $statement->bindValue(':fechaSalida', $fechaSalida);
-     $statement->bindValue(':total', $total);
-     $statement->execute(
-      
-     );
+      $statement = $dbConn->prepare($sql);
+      bindAllValues($statement, $input);
+      $statement->execute();
+   
      $postCodigo = $dbConn->lastInsertId();
      if($postCodigo)
      {
